@@ -1,40 +1,50 @@
 class Usuario {
-    constructor(nombre, apellido){
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.mascotas = [];
-        this.librosNombre = [];
-        this.librosAutor = [];
+    constructor(nombre, apellido, libros, mascotas) {
+      this._nombre = nombre;
+      this._apellido = apellido;
+      this._libros = libros;
+      this._mascotas = mascotas;
     }
-    
-getFullName(){
-    console.log(`Tu nombre es ${this.nombre} y tu apellido ${this.apellido}`)
-}
-addMascota(nombreMascota){
-    this.mascotas.push(nombreMascota);
-}
-countMascotas(){
-    console.log(`Tenes ${this.mascotas.length} mascotas!`);
-}
-addBook(nombre, autor){
-    this.librosNombre.push(nombre);
-    this.librosAutor.push(autor);
-}
-getBookNames(){
-    console.log(`El/Los nombres de tus libros son : ${this.librosNombre}`);
-}
-}
-
-
-const marcio = new Usuario("Marcio", "Dubokovic");
-
-
-marcio.getFullName();
-marcio.addMascota('Tiger');
-marcio.addMascota('Ambar');
-
-marcio.addBook('El Señor de los Anillos', 'Talkien');
-marcio.addBook('Pennywise', 'Stephen King');
-
-marcio.countMascotas();
-marcio.getBookNames();
+    getFullName() {
+      return `${this._nombre} ${this._apellido}`;
+    }
+  
+    addMascotas(nomMas) {
+      this._mascotas.push(nomMas);
+    }
+  
+    countMascotas() {
+      return `Tiene ${this._mascotas.length} mascotas.`;
+    }
+  
+    addBook(nomLib, autor) {
+      this._libros.push({ nombre: nomLib, escritor: autor });
+    }
+  
+    getBooks() {
+      return this._libros.map((libro) => libro.nombre);
+    }
+  }
+  
+  const nombre = "Marcio";
+  
+  const apellido = "Dubokovic";
+  
+  const mascotas = ["caballo", "gato"];
+  
+  const libros = [
+    {
+      nombre: "libro1",
+      escritor: "elcreador1",
+    },
+    {
+      nombre: "libro2",
+      escritor: "creador2",
+    },
+  ];
+  
+  const newUsuario = new Usuario(nombre, apellido, libros, mascotas);
+  
+  console.log(newUsuario.getFullName());
+  console.log(newUsuario.getBooks());
+  console.log(newUsuario.countMascotas());
